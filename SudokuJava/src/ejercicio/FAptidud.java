@@ -15,6 +15,7 @@ import org.jgap.IChromosome;
 public class FAptidud extends FitnessFunction {
     double apto = 0;
     int a = 0;
+    int b = 0;
     public double evaluate(IChromosome cromosoma){
         apto = 0;
         
@@ -24,7 +25,7 @@ public class FAptidud extends FitnessFunction {
         }
         
         for (int i = 0; i < 9; i++) {
-            evaluarVertical(cromosoma);
+            evaluarVertical(cromosoma,i);
         }
         
         return apto;
@@ -43,8 +44,14 @@ public class FAptidud extends FitnessFunction {
         if (acumulador == 45) apto+=20;
     }
 
-    private void evaluarVertical(IChromosome cromosoma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void evaluarVertical(IChromosome cromosoma, int fila) {
+        int acumulador = 0;
+        
+        for (int i = fila; i < (fila+72); i=i+9) {
+            acumulador+= (Integer)cromosoma.getGene(i).getAllele();
+        }
+        
+        if (acumulador == 45) apto+=20;
     }
     
 }
