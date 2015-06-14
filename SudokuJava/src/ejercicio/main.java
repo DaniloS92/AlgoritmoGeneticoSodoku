@@ -10,6 +10,7 @@ import org.jgap.impl.IntegerGene;
 import org.jgap.Chromosome;
 import org.jgap.Gene;
 import org.jgap.Genotype;
+import org.jgap.IChromosome;
 
 /**
  *
@@ -19,5 +20,27 @@ public class main  {
     
     public static void main(String[] args) throws Exception{
         DefaultConfiguration AGConfig = new DefaultConfiguration();
+        
+        AGConfig.setPreservFittestIndividual(true);
+        FAptidud funcionAPtitud = new FAptidud();
+        
+        AGConfig.setFitnessFunction(null);//Aqui va la FAptitud
+        
+        Gene [] AGgen = new Gene[9];
+        
+        for (int i = 0; i < AGgen.length; i++) {//fila 
+            AGgen[i] = new IntegerGene(AGConfig, 1, 9);
+        }
+        
+        IChromosome AgChromosoma = new Chromosome(AGConfig, AGgen);   
+        AGConfig.setSampleChromosome(AgChromosoma);
+        
+        AGConfig.setPopulationSize(1000);
+        
+        Genotype poblacion = Genotype.randomInitialGenotype(AGConfig);
+        
+        for (int i = 0; i < 100; i++) {
+            poblacion.evolve();
+        }
     }
 }
