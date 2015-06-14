@@ -26,7 +26,7 @@ public class main  {
         
         AGConfig.setFitnessFunction(null);//Aqui va la FAptitud
         
-        Gene [] AGgen = new Gene[9];
+        Gene [] AGgen = new Gene[81];
         
         for (int i = 0; i < AGgen.length; i++) {//fila 
             AGgen[i] = new IntegerGene(AGConfig, 1, 9);
