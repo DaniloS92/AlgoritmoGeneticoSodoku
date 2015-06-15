@@ -16,6 +16,8 @@ public class FAptidud extends FitnessFunction {
     double apto = 0;
     int a = 0;
     int b = 0;
+    int c = 0;
+    int j = 0; 
     public double evaluate(IChromosome cromosoma){
         apto = 0;
         
@@ -23,16 +25,28 @@ public class FAptidud extends FitnessFunction {
             evaluarHorizontal(cromosoma,a);
             a+=9;
         }
-        
+        j = 0;
         for (int i = 0; i < 9; i++) {
             evaluarVertical(cromosoma,i);
         }
         
+        j = 0;
+        for (int i = 0; i < 9; i++) {
+            repetidosHorizontales(cromosoma,c);
+            c+=9;
+        }
+        
+        for (int i = 0; i < 9; i++) {
+            repetidosVerticales(cromosoma,i);
+        }
+        
+        j = 0;
+        
         return apto;
     }
 
-    int j = 0; // variable q me servira para validar hasta q filas tiene que llegar el bucle
-    private void evaluarHorizontal(IChromosome cromosoma, int fila) {
+    // variable q me servira para validar hasta q filas tiene que llegar el bucle
+    public void evaluarHorizontal(IChromosome cromosoma, int fila) {
         int acumulador = 0; // tomando en cuenta q la suma de los numero deeb ser = a 45 esta variable jnos permitira saber
         j+=9; // aqui le estamos dado el limite del blucle para q obtenga los numeros,cada vez q se inicie este metodo J se va a aumentar 9
         
@@ -44,7 +58,7 @@ public class FAptidud extends FitnessFunction {
         if (acumulador == 45) apto+=20;
     }
 
-    private void evaluarVertical(IChromosome cromosoma, int fila) {
+    public void evaluarVertical(IChromosome cromosoma, int fila) {
         int acumulador = 0;
         
         for (int i = fila; i < (fila+72); i=i+9) {
@@ -54,10 +68,13 @@ public class FAptidud extends FitnessFunction {
         if (acumulador == 45) apto+=20;
     }
     
+    
+    String cadena = "";
+    String[] vectorConsulta;
     public void repetidosHorizontales(IChromosome cromosoma, int fila){
         
-        String cadena="";
-        String [] vectorConsulta;
+//        String cadena="";
+//        String [] vectorConsulta;
         j+=9; // aqui le estamos dado el limite del blucle para q obtenga los numeros,cada vez q se inicie este metodo J se va a aumentar 9
         
         while(fila < j){
@@ -70,11 +87,13 @@ public class FAptidud extends FitnessFunction {
         
         calcularRepetidos(vectorConsulta);
         
+        cadena = "";
+        vectorConsulta = null; //reseteo
     }
     
-    public void repetidosVerticalesb(IChromosome cromosoma, int fila) {
-        String cadena = "";
-        String[] vectorConsulta;
+    public void repetidosVerticales(IChromosome cromosoma, int fila) {
+//        String cadena = "";
+//        String[] vectorConsulta;
         for (int i = fila; i < (fila + 72); i = i + 9) {
             cadena += "," + (Integer) cromosoma.getGene(fila).getAllele();
         }
@@ -83,6 +102,9 @@ public class FAptidud extends FitnessFunction {
         vectorConsulta = cadena.split(",");
 
         calcularRepetidos(vectorConsulta);
+ 
+        cadena = "";
+        vectorConsulta = null; //reseteo
     }
 
     public void calcularRepetidos(String [] vector){

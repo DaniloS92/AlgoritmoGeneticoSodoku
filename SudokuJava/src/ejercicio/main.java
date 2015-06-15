@@ -39,19 +39,15 @@ public class main  {
         
         Genotype poblacion = Genotype.randomInitialGenotype(AGConfig);
         
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             poblacion.evolve();
         }
         
         IChromosome mejor = poblacion.getFittestChromosome();
-        int j = 0;
-        for (int i = 0; i < 10; i++) {
-            while(j<9){
+        int ja = 0;
+        for (int i = 0; i < 81; i++) {
                 System.out.print((Integer)mejor.getGene(i).getAllele()+"\t");
-                j++;
-            }
-            System.out.println("");
-        }
-        
+                if(i==8 || i==17 || i==26 || i==35 || i==44 || i==53 || i==62 || i==71 || i==80)System.out.println("");
+        }   
     }
 }
