@@ -177,5 +177,10 @@ public class FAptidud extends FitnessFunction {
             apto += 10;
         }
     }
+    
+    public void calcularDiagonalesRep(IChromosome cromosoma){
+        Integer gen0 = (Integer)cromosoma.getGene(0).getAllele();
+        
+    }
 
 }
