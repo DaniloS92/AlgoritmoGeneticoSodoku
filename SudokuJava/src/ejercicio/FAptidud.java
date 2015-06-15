@@ -74,9 +74,9 @@ public class FAptidud extends FitnessFunction {
             apto += 20;
         }
     }
-
-    String cadena = "";
-    String[] vectorConsulta;
+//
+//    String cadena = "";
+//    String[] vectorConsulta;
 
     public void repetidosHorizontales(IChromosome cromosoma, int fila) {
 
@@ -90,6 +90,8 @@ public class FAptidud extends FitnessFunction {
         }
 
         cadena = cadena.trim();
+        cadena = cadena.substring(1);
+        //System.out.println("Cadena de la Horizontal; "+cadena);
         vectorConsulta = cadena.split(",");
 
         calcularRepetidos(vectorConsulta);
