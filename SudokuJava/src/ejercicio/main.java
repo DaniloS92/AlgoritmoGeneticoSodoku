@@ -24,7 +24,7 @@ public class main  {
         AGConfig.setPreservFittestIndividual(true);
         FAptidud funcionAPtitud = new FAptidud();
         
-        AGConfig.setFitnessFunction(null);//Aqui va la FAptitud
+        AGConfig.setFitnessFunction(funcionAPtitud);//Aqui va la FAptitud
         
         Gene [] AGgen = new Gene[81];
         
@@ -42,5 +42,16 @@ public class main  {
         for (int i = 0; i < 100; i++) {
             poblacion.evolve();
         }
+        
+        IChromosome mejor = poblacion.getFittestChromosome();
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            while(j<9){
+                System.out.print((Integer)mejor.getGene(i).getAllele()+"\t");
+                j++;
+            }
+            System.out.println("");
+        }
+        
     }
 }
