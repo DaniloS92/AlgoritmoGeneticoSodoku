@@ -66,7 +66,7 @@ public class FAptidud extends FitnessFunction {
     public void evaluarVertical(IChromosome cromosoma, int fila) {
         int acumulador = 0;
 
-        for (int i = fila; i < (fila + 72); i = i + 9) {
+        for (int i = fila; i <= (fila + 72); i = i + 9) {
             acumulador += (Integer) cromosoma.getGene(i).getAllele();
         }
 
@@ -91,7 +91,6 @@ public class FAptidud extends FitnessFunction {
 
         cadena = cadena.trim();
         cadena = cadena.substring(1);
-        //System.out.println("Cadena de la Horizontal; "+cadena);
         vectorConsulta = cadena.split(",");
 
         calcularRepetidos(vectorConsulta);
@@ -101,13 +100,14 @@ public class FAptidud extends FitnessFunction {
     public void repetidosVerticales(IChromosome cromosoma, int fila) {
         String cadena = "";
         String[] vectorConsulta;
-        for (int i = fila; i < (fila + 72); i = i + 9) {
-            cadena += "," + (Integer) cromosoma.getGene(fila).getAllele();
+        for (int i = fila; i <= (fila + 72); i = i + 9) {
+            cadena += "," + (Integer) cromosoma.getGene(i).getAllele();
         }
 
         cadena = cadena.trim();
+        //System.out.println("Cadena de la Vetical; "+cadena);
+        cadena = cadena.substring(1);
         vectorConsulta = cadena.split(",");
-
         calcularRepetidos(vectorConsulta);
     }
 
