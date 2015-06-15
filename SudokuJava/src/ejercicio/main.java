@@ -39,7 +39,7 @@ public class main  {
         
         Genotype poblacion = Genotype.randomInitialGenotype(AGConfig);
         
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 300; i++) {
             poblacion.evolve();
         }
         

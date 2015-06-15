@@ -31,6 +31,7 @@ public class FAptidud extends FitnessFunction {
         }
         
         j = 0;
+        c=0;
         for (int i = 0; i < 9; i++) {
             repetidosHorizontales(cromosoma,c);
             c+=9;
@@ -73,8 +74,8 @@ public class FAptidud extends FitnessFunction {
     String[] vectorConsulta;
     public void repetidosHorizontales(IChromosome cromosoma, int fila){
         
-//        String cadena="";
-//        String [] vectorConsulta;
+        String cadena="";
+        String [] vectorConsulta;
         j+=9; // aqui le estamos dado el limite del blucle para q obtenga los numeros,cada vez q se inicie este metodo J se va a aumentar 9
         
         while(fila < j){
@@ -92,8 +93,8 @@ public class FAptidud extends FitnessFunction {
     }
     
     public void repetidosVerticales(IChromosome cromosoma, int fila) {
-//        String cadena = "";
-//        String[] vectorConsulta;
+        String cadena = "";
+        String[] vectorConsulta;
         for (int i = fila; i < (fila + 72); i = i + 9) {
             cadena += "," + (Integer) cromosoma.getGene(fila).getAllele();
         }
