@@ -43,6 +43,8 @@ public class FAptidud extends FitnessFunction {
             repetidosVerticales(cromosoma, i);
         }
 
+        //sacarDiagonales(cromosoma);
+        
         j = 0;
 
         return apto;
@@ -178,9 +180,43 @@ public class FAptidud extends FitnessFunction {
         }
     }
     
-    public void calcularDiagonalesRep(IChromosome cromosoma){
-        Integer gen0 = (Integer)cromosoma.getGene(0).getAllele();
+    String ge1 = "";
+    String ge2 = "";
+    String ge3 = "";
+    public void sacarDiagonales(IChromosome cromosoma){
+        int i = 0;
+         
+        for (i = 10; i <= 70; i += 3) {
+            if (i == 16 || i == 43) {
+                i += 21;
+            }
+            ge1 = "" + (Integer) cromosoma.getGene(i).getAllele();
+            ge2 = "" + (Integer) cromosoma.getGene(i-10).getAllele();
+            ge3 = "" + (Integer) cromosoma.getGene(i+10).getAllele();
+            calcularDiagonalesRep(ge1, ge2, ge3);
+            
+            ge1 = "" + (Integer) cromosoma.getGene(i).getAllele();
+            ge2 = "" + (Integer) cromosoma.getGene(i-8).getAllele();
+            ge3 = "" + (Integer) cromosoma.getGene(i+8).getAllele();
+            calcularDiagonalesRep(ge1, ge2, ge3);
+            
+            ge1 = "";
+            ge2 = "";
+            ge3 = "";
+        }
+    }
+    
+    public void calcularDiagonalesRep(String g1, String g2, String g3){
+        String gen1 = g1;
+        String gen2 = g2;
+        String gen3 = g3;
         
+        if(gen1.compareTo(gen2) !=0 && gen1.compareTo(gen3) !=0
+                && gen2.compareTo(gen1) !=0 && gen2.compareTo(gen3) !=0 
+                && gen3.compareTo(gen1)!=0 && gen3.compareTo(gen2) !=0){ 
+            
+            apto +=5;
+        }
     }
 
 }
